@@ -1,18 +1,25 @@
-HOST_NAME=minima
+# Set the host name
+# HOST_NAME=minima
 
+# Load nvm and use the latest version of Node
 source ~/.nvm/nvm.sh
 nvm use stable
+
+# cd into a directory by just typing the directory name
 shopt -s autocd
+
+# Save history from all open bashes as commands get entered
 shopt -s histappend
 
-export PATH=$PATH:$HOME/bin
-
+# Make the history of commands very large
 export HISTSIZE=5000
 export HISTFILESIZE=10000
 
+# Traverse history by typing a few letters first and using arrows
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
 
+# Color setup
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 
@@ -22,10 +29,12 @@ bldgrn='\e[1;32m' # Bold Green
 bldpur='\e[1;35m' # Bold Purple
 txtrst='\e[0m'    # Text Reset
 
-emojis=("👾" "🌐" "🎲" "🌍" "🐉" "🌵")
+# Random emojis
+emojis=("🍻" "🍺" "🍷" "🌍")
 
 EMOJI=${emojis[$RANDOM % ${#emojis[@]} ]}
 
+# Show the emoji and current working directory
 print_before_the_prompt () {
     dir=$PWD
     home=$HOME
@@ -37,8 +46,7 @@ PROMPT_COMMAND=print_before_the_prompt
 PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 PS1="$EMOJI >"
 
-fortune | cowsay -f tux
-
+# Make a directory and cd into it
 function mkcd()
 {
 	mkdir $1 && cd $1
